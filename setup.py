@@ -24,12 +24,12 @@ Topic :: Software Development :: Testing
 """[1:-1]
 
 setup(
-    name='robotframework-redislibrary',
+    name='robotframework-redislibrary-xwfintech',
     version=VERSION,
     description="robotframework-redislibrary is a Robot Framework test library for manipulating in-memory data which store in Redis",
     author="Traitanit Huangsri",
     author_email='traitanit.hua@gmail.com',
-    url='https://github.com/nottyo/robotframework-redislibrary.git',
+    url='https://github.com/houfy-github/robotframework-redislibrary.git',
     packages=[
         'RedisLibrary'
     ],
