@@ -258,17 +258,26 @@ class RedisLibraryKeywords(object):
             logger.error("Hash: " + hash_name + " and Key: " + key +" exist in Redis.")
             raise AssertionError
 
-    @keyword('Redis Key Should Not Be Exist')
-    def check_if_key_not_exists(self, redis_conn, key):
-        """ Keyword will successed if specify key doesn't exist in Redis
+    @keyword('Get Keys With Pattern From Redis')
+    def check_if_key_not_exists(self, redis_conn, pattern):
+        """ Get cached data match pattern from Redis
 
         Arguments:
             - redis_conn: Redis connection object
             - key: String keyword to find.
 
         Examples:
-        | ${not_exist}= | Redis Key Should Not Be Exist | ${redis_conn} | BARCODE|1234567890 |
+        | ${data}=   | Get Keys With Pattern From Redis |  ${redis_conn} | tb* |
         """
-        if redis_conn.exists(key):
-            logger.error("Key " + key + " exist in Redis.")
-            raise AssertionError
+        return redis_conn.keys(pattern)
+
+    @keyword('Disconnect To Redis')
+    def disconnect_from_redis(self, redis_conn):
+
+        return redis_conn.connection_pool.disconnect()
+
+    @keyword('Get Redis Info')
+    def ger_redis_info(self, redis_conn):
+        
+        return redis_conn.info()
+    
